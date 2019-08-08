@@ -32,9 +32,9 @@ namespace Zeux.Test.Repositories
                     new Asset() { Id = 1, Name = "Name of investment 5", Percent = 0.96m, Sum = 460m, Type = assetTypes[1] },
                     new Asset() { Id = 1, Name = "Name of investment 6", Percent = 0.78m, Sum = 450m, Type = assetTypes[2] },
                     new Asset() { Id = 1, Name = "Name of investment 7", Percent = 0.12m, Sum = 460m, Type = assetTypes[0] },
-                    new Asset() { Id = 1, Name = "Name of investment 8", Percent = 0.10m, Sum = 300m, Type = assetTypes[1] },
-                    new Asset() { Id = 1, Name = "Name of investment 9", Percent = 0.59m, Sum = 500m, Type = assetTypes[2] },
-                    new Asset() { Id = 1, Name = "Name of investment 10", Percent = 0.44m, Sum = 50m, Type = assetTypes[0] }
+                    new Asset() { Id = 1, Name = "orange", Percent = 0.10m, Sum = 300m, Type = assetTypes[1] },
+                    new Asset() { Id = 1, Name = "banana", Percent = 0.59m, Sum = 500m, Type = assetTypes[2] },
+                    new Asset() { Id = 1, Name = "apple", Percent = 0.44m, Sum = 50m, Type = assetTypes[0] }
                 }).AsQueryable();
         }
 
