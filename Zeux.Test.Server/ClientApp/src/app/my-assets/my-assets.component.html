@@ -8,10 +8,10 @@
 </div>
 <div class="content">
   <div class="list">
-    <div *ngFor="let asset of assets" class="item"> 
+    <div *ngFor="let asset of assets" class="item">
       <div class="item-left">
         <div class="item-category">{{asset.type.name}}</div>
-        <div class="item-title">{{asset.name}}</div>
+        <div class="item-title">{{asset.name | upperFistLetter}}</div>
         <div class="item-saving">%{{asset.percent * 100}}</div>
       </div>
       <div class="item-right">£{{asset.sum}}</div>

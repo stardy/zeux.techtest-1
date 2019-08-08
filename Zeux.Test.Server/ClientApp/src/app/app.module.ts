@@ -9,13 +9,15 @@ import { OpportunitiesComponent } from './opportunities/opportunities.component'
 import { MyAssetsComponent } from './my-assets/my-assets.component';
 import { HeaderComponent } from './header/header.component';
 import { AuthInterceptor } from 'src/app/app.auth.interseptor';
+import {UpperFistLetterPipe} from "./pipes/upper-fist-letter.pipe";
 
 @NgModule({
   declarations: [
     AppComponent,
     OpportunitiesComponent,
     MyAssetsComponent,
-    HeaderComponent
+    HeaderComponent,
+    UpperFistLetterPipe
   ],
   imports: [
     CommonModule,
