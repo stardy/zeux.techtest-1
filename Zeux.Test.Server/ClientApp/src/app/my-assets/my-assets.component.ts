@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
+import {AssetService} from "../services/asset.service";
 
 @Component({
   selector: 'app-my-assets',
@@ -9,43 +9,34 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class MyAssetsComponent implements OnInit {
 
-  private type: string;
-  private assetTypes: Array<AssetType>;
-  private assets: Array<Asset>;
+  public assetTypes: Array<AssetType>;
+  public assets: Array<Asset>;
 
   constructor(private route: ActivatedRoute,
-    private http: HttpClient,
-    private router: Router) { }
-    private httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
+              private router: Router,
+              private assetService: AssetService) {
+  }
 
   ngOnInit() {
-    this.type = this.route.snapshot.params.type;
     this.reloadAssets();
 
-    const uriAssetTypes = '/api/asset/GetTypes';
-
-    this.http.get<Array<AssetType>>(uriAssetTypes, this.httpOptions)
-    .subscribe((dataAssetTypes: Array<AssetType>) => {
+    this.assetService.getTypes()
+      .subscribe((dataAssetTypes: Array<AssetType>) => {
         this.assetTypes = dataAssetTypes;
       });
 
     this.router.events
-    .subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.reloadAssets();
-    }});
+      .subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          this.reloadAssets();
+        }
+      });
   }
 
   reloadAssets() {
-    const uriAsset = '/api/asset/Get/' + this.route.snapshot.params.type;
-    this.http.get<Array<Asset>>(uriAsset, this.httpOptions)
-    .subscribe((dataAssets: Array<Asset>) => {
-          this.assets = dataAssets;
-      });
+    this.route.data.subscribe((assets) => {
+      this.assets = assets.data;
+    });
   }
 
 }
@@ -53,7 +44,8 @@ export class MyAssetsComponent implements OnInit {
 export class AssetType {
   constructor(
     public id: number,
-    public name: string) { }
+    public name: string) {
+  }
 }
 
 export class Asset {
@@ -63,5 +55,6 @@ export class Asset {
     public percent: number,
     public sum: number,
     public type: AssetType,
-    public assetTypeName: string) { }
+    public assetTypeName: string) {
+  }
 }

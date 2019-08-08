@@ -10,6 +10,8 @@ import { MyAssetsComponent } from './my-assets/my-assets.component';
 import { HeaderComponent } from './header/header.component';
 import { AuthInterceptor } from 'src/app/app.auth.interseptor';
 import {UpperFistLetterPipe} from "./pipes/upper-fist-letter.pipe";
+import {AssetService} from "./services/asset.service";
+import {MyAssetsResolver} from "./my-assets/my-assets-resolver";
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import {UpperFistLetterPipe} from "./pipes/upper-fist-letter.pipe";
     AppRoutingModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    MyAssetsResolver, AssetService
   ],
   bootstrap: [AppComponent]
 })
